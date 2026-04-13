@@ -116,6 +116,59 @@ const statusBadge: Record<string, string> = {
     </header>
 
     <div class="space-y-8">
+      <!-- Stats + Filters -->
+      <section class="grid grid-cols-1 xl:grid-cols-[1.4fr_1fr] gap-8">
+        <div class="bg-surface-variant/30 rounded-xl p-8 border border-outline-variant/10">
+          <h3 class="font-serif text-lg text-stone-800 mb-6">Overview</h3>
+          <div class="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 gap-4">
+            <div class="bg-surface-container-lowest p-4 rounded-lg">
+              <p class="text-[10px] uppercase tracking-widest text-stone-400">Total</p>
+              <p class="text-2xl font-serif text-stone-800 mt-1">{{ stats.total }}</p>
+            </div>
+            <div class="bg-surface-container-lowest p-4 rounded-lg">
+              <p class="text-[10px] uppercase tracking-widest text-stone-400">Confirmed</p>
+              <p class="text-2xl font-serif text-stone-800 mt-1">{{ stats.confirmed.toString().padStart(2,'0') }}</p>
+            </div>
+            <div class="bg-surface-container-lowest p-4 rounded-lg">
+              <p class="text-[10px] uppercase tracking-widest text-stone-400">Pending</p>
+              <p class="text-2xl font-serif text-stone-800 mt-1">{{ stats.pending.toString().padStart(2,'0') }}</p>
+            </div>
+            <div class="bg-surface-container-lowest p-4 rounded-lg">
+              <p class="text-[10px] uppercase tracking-widest text-stone-400">Est. Revenue</p>
+              <p class="text-2xl font-serif text-primary mt-1">€{{ stats.revenue.toLocaleString() }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-low rounded-xl p-8">
+          <h3 class="font-serif text-lg text-stone-800 mb-6">Refine View</h3>
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <label class="text-[10px] uppercase tracking-widest text-stone-500 font-semibold">Service Category</label>
+              <select
+                v-model="filterService"
+                class="w-full bg-surface-container-lowest border-none rounded-xl text-xs py-3 px-4 focus:ring-1 focus:ring-primary-container outline-none"
+              >
+                <option value="all">All Services</option>
+                <option v-for="svc in SERVICES" :key="svc.id" :value="svc.name">{{ svc.name }}</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label class="text-[10px] uppercase tracking-widest text-stone-500 font-semibold">Status</label>
+              <div class="flex flex-wrap gap-2">
+                <button
+                  v-for="s in ['all','pending','confirmed','cancelled']"
+                  :key="s"
+                  type="button"
+                  class="px-4 py-2 rounded-full text-[10px] font-medium transition-colors capitalize"
+                  :class="filterStatus === s ? 'bg-primary text-on-primary' : 'bg-surface-container-lowest text-stone-600 hover:bg-stone-200'"
+                  @click="filterStatus = s as typeof filterStatus.value; page = 1"
+                >{{ s }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Bookings Table -->
       <section class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
@@ -220,60 +273,6 @@ const statusBadge: Record<string, string> = {
             >
               <span class="material-symbols-outlined text-sm">navigate_next</span>
             </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Stats + Filters -->
-      <section class="grid grid-cols-1 xl:grid-cols-[1.4fr_1fr] gap-8">
-        <div class="bg-surface-variant/30 rounded-xl p-8 border border-outline-variant/10">
-          <h3 class="font-serif text-lg text-stone-800 mb-6">Overview</h3>
-          <div class="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 gap-4">
-            <div class="bg-surface-container-lowest p-4 rounded-lg">
-              <p class="text-[10px] uppercase tracking-widest text-stone-400">Total</p>
-              <p class="text-2xl font-serif text-stone-800 mt-1">{{ stats.total }}</p>
-            </div>
-            <div class="bg-surface-container-lowest p-4 rounded-lg">
-              <p class="text-[10px] uppercase tracking-widest text-stone-400">Confirmed</p>
-              <p class="text-2xl font-serif text-stone-800 mt-1">{{ stats.confirmed.toString().padStart(2,'0') }}</p>
-            </div>
-            <div class="bg-surface-container-lowest p-4 rounded-lg">
-              <p class="text-[10px] uppercase tracking-widest text-stone-400">Pending</p>
-              <p class="text-2xl font-serif text-stone-800 mt-1">{{ stats.pending.toString().padStart(2,'0') }}</p>
-            </div>
-            <div class="bg-surface-container-lowest p-4 rounded-lg">
-              <p class="text-[10px] uppercase tracking-widest text-stone-400">Est. Revenue</p>
-              <p class="text-2xl font-serif text-primary mt-1">€{{ stats.revenue.toLocaleString() }}</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-surface-container-low rounded-xl p-8">
-          <h3 class="font-serif text-lg text-stone-800 mb-6">Refine View</h3>
-          <div class="space-y-6">
-            <div class="space-y-2">
-              <label class="text-[10px] uppercase tracking-widest text-stone-500 font-semibold">Service Category</label>
-              <select
-                v-model="filterService"
-                class="w-full bg-surface-container-lowest border-none rounded-xl text-xs py-3 px-4 focus:ring-1 focus:ring-primary-container outline-none"
-              >
-                <option value="all">All Services</option>
-                <option v-for="svc in SERVICES" :key="svc.id" :value="svc.name">{{ svc.name }}</option>
-              </select>
-            </div>
-            <div class="space-y-2">
-              <label class="text-[10px] uppercase tracking-widest text-stone-500 font-semibold">Status</label>
-              <div class="flex flex-wrap gap-2">
-                <button
-                  v-for="s in ['all','pending','confirmed','cancelled']"
-                  :key="s"
-                  type="button"
-                  class="px-4 py-2 rounded-full text-[10px] font-medium transition-colors capitalize"
-                  :class="filterStatus === s ? 'bg-primary text-on-primary' : 'bg-surface-container-lowest text-stone-600 hover:bg-stone-200'"
-                  @click="filterStatus = s as typeof filterStatus.value; page = 1"
-                >{{ s }}</button>
-              </div>
-            </div>
           </div>
         </div>
       </section>

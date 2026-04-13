@@ -11,7 +11,6 @@ const pendingCount = computed(() =>
 const navItems = [
   { label: 'Dashboard', to: '/admin', icon: 'dashboard' },
   { label: 'Bookings', to: '/admin/bookings', icon: 'calendar_today', badge: pendingCount },
-  { label: 'Clients', to: '/admin/clients', icon: 'group' },
 ]
 
 function logout() {
@@ -49,15 +48,7 @@ function logout() {
       </NuxtLink>
     </nav>
 
-    <div class="pt-8 border-t border-stone-200/30 space-y-2">
-      <NuxtLink
-        to="/admin/settings"
-        class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ease-out text-stone-500 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 font-sans text-xs uppercase tracking-widest"
-      >
-        <span class="material-symbols-outlined">settings</span>
-        Settings
-      </NuxtLink>
-
+    <div class="pt-8 border-t border-stone-200/30">
       <!-- User row + logout -->
       <div class="flex items-center gap-3 px-4 pt-2">
         <div class="w-9 h-9 rounded-full overflow-hidden bg-surface-container-high ring-2 ring-primary-container/20 shrink-0">
