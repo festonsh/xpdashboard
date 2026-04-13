@@ -188,7 +188,7 @@ const statusBadge: Record<string, string> = {
         </div>
 
         <!-- Loading state -->
-        <div v-if="loading && bookings.length === 0" class="flex items-center justify-center py-20">
+        <div v-if="loading && filteredBookings.length === 0" class="flex items-center justify-center py-20">
           <span class="material-symbols-outlined text-primary text-3xl animate-spin">autorenew</span>
         </div>
 
