@@ -64,6 +64,11 @@ export const useBookingsStore = defineStore('bookings', () => {
   const searchQuery   = ref('')
 
   /* ── Helpers ──────────────────────────────────────────────── */
+  // Strip trailing slashes and any accidental endpoint suffix from the base URL
+  function baseUrl() {
+    return config.public.wpApiUrl.replace(/\/+$/, '').replace(/\/bookings$/, '')
+  }
+
   function wpHeaders() {
     return {
       'Content-Type':  'application/json',
@@ -119,7 +124,7 @@ export const useBookingsStore = defineStore('bookings', () => {
     error.value   = null
     try {
       const data = await $fetch<Booking[]>(
-        `${config.public.wpApiUrl}/bookings`,
+        `${baseUrl()}/bookings`,
         { headers: wpHeaders() }
       )
       bookings.value = data
@@ -139,7 +144,7 @@ export const useBookingsStore = defineStore('bookings', () => {
   }) {
     const svc    = SERVICES.find(s => s.name === payload.service)
     const result = await $fetch<Booking>(
-      `${config.public.wpApiUrl}/bookings`,
+      `${baseUrl()}/bookings`,
       {
         method:  'POST',
         headers: wpHeaders(),
@@ -158,7 +163,7 @@ export const useBookingsStore = defineStore('bookings', () => {
 
   /* ── Admin: status changes ────────────────────────────────── */
   async function confirmBooking(id: string) {
-    await $fetch(`${config.public.wpApiUrl}/bookings/${id}/status`, {
+    await $fetch(`${baseUrl()}/bookings/${id}/status`, {
       method:  'PATCH',
       headers: wpHeaders(),
       body:    { status: 'confirmed' },
@@ -168,7 +173,7 @@ export const useBookingsStore = defineStore('bookings', () => {
   }
 
   async function cancelBooking(id: string) {
-    await $fetch(`${config.public.wpApiUrl}/bookings/${id}/status`, {
+    await $fetch(`${baseUrl()}/bookings/${id}/status`, {
       method:  'PATCH',
       headers: wpHeaders(),
       body:    { status: 'cancelled' },
@@ -178,7 +183,7 @@ export const useBookingsStore = defineStore('bookings', () => {
   }
 
   async function deleteBooking(id: string) {
-    await $fetch(`${config.public.wpApiUrl}/bookings/${id}`, {
+    await $fetch(`${baseUrl()}/bookings/${id}`, {
       method:  'DELETE',
       headers: wpHeaders(),
     })
