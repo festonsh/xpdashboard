@@ -111,6 +111,10 @@ export const useBookingsStore = defineStore('bookings', () => {
   /* ── Fetch from WordPress ─────────────────────────────────── */
   async function fetchBookings() {
     if (!import.meta.client) return
+    if (!config.public.wpApiUrl) {
+      error.value = 'WordPress API URL not configured. Set NUXT_PUBLIC_WP_API_URL in Vercel.'
+      return
+    }
     loading.value = true
     error.value   = null
     try {
