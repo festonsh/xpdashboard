@@ -31,14 +31,14 @@ async function handleLogin() {
     <!-- Left: decorative panel -->
     <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-on-surface">
       <img
-        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM8kageXCOBFqtB3uSaj3zmNujM9EupsvLYKPQkkKUh8e0HLVqlbsNB5eehDCNLF_GqE7BE62wwOqfsdR_7tULp1tlgB1B-htDplkB9AiIGyRy-6kkyj_uP1DfBVAYwgc-dVPXu1DvEUtRXvvGxqfgrY3wIaKzszlhLVqCno7YnIaEgmz2D9VB94klKAYUmNTuggZBp8b3jz3Tv0ERxJHqmnQAniu-JceVoEbxNxKb_upg1USrT_6BHyfEXm_2IhIqtUaDhl9mejaE"
-        alt="Atelier interior"
-        class="w-full h-full object-cover opacity-60"
+        src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&auto=format&fit=crop"
+        alt="Nail art fun"
+        class="w-full h-full object-cover opacity-75"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/30 to-transparent" />
       <div class="absolute bottom-16 left-16 right-16">
         <p class="font-serif italic text-3xl text-white leading-relaxed mb-4">
-          "Where precision meets serenity."
+          "I came for a manicure. I stayed for the drama. 💅"
         </p>
         <p class="text-white/60 text-xs tracking-[0.3em] uppercase">SH Nails &amp; Beauty — Admin Workspace</p>
       </div>
