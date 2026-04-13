@@ -27,17 +27,17 @@ async function handleLogin() {
 </script>
 
 <template>
-  <div class="min-h-screen bg-background flex">
+  <div class="h-screen overflow-hidden bg-background flex">
     <!-- Left: decorative panel -->
     <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-on-surface">
       <img
         src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&auto=format&fit=crop"
         alt="Nail art fun"
-        class="w-full h-full object-cover opacity-75"
+        class="w-full h-full object-cover object-center opacity-75"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/30 to-transparent" />
-      <div class="absolute bottom-16 left-16 right-16">
-        <p class="font-serif italic text-3xl text-white leading-relaxed mb-4">
+      <div class="absolute bottom-10 left-10 right-10">
+        <p class="font-serif italic text-2xl text-white leading-relaxed mb-3">
           "I came for a manicure. I stayed for the drama. 💅"
         </p>
         <p class="text-white/60 text-xs tracking-[0.3em] uppercase">SH Nails &amp; Beauty — Admin Workspace</p>
@@ -45,10 +45,10 @@ async function handleLogin() {
     </div>
 
     <!-- Right: login form -->
-    <div class="flex-1 flex flex-col items-center justify-center px-8 py-16">
+    <div class="flex-1 flex flex-col items-center justify-center px-8">
       <div class="w-full max-w-sm">
         <!-- Logo -->
-        <div class="mb-12 text-center">
+        <div class="mb-8 text-center">
           <NuxtLink to="/" class="text-2xl font-bold text-stone-900 tracking-tight">
             <span class="text-primary">SH</span> Nails &amp; Beauty
           </NuxtLink>
@@ -56,7 +56,7 @@ async function handleLogin() {
         </div>
 
         <!-- Form -->
-        <form class="space-y-8" @submit.prevent="handleLogin">
+        <form class="space-y-6" @submit.prevent="handleLogin">
           <div class="space-y-2">
             <label class="block text-[10px] uppercase tracking-widest text-outline font-semibold">Username</label>
             <input
@@ -108,7 +108,7 @@ async function handleLogin() {
           </button>
         </form>
 
-        <p class="text-center text-[10px] text-stone-400 mt-12">
+        <p class="text-center text-[10px] text-stone-400 mt-6">
           <NuxtLink to="/" class="hover:text-primary transition-colors">← Back to website</NuxtLink>
         </p>
       </div>
