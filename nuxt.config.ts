@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
-      wpApiUrl: process.env.NUXT_PUBLIC_WP_API_URL ?? 'https://atelier-wp.ddev.site/wp-json/atelier/v1',
+      wpApiUrl: process.env.NUXT_PUBLIC_WP_API_URL ?? '',
       wpApiKey: process.env.NUXT_PUBLIC_WP_API_KEY ?? '',
     },
   },
