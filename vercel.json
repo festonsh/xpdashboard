@@ -1,5 +1,8 @@
 {
   "buildCommand": "nuxt generate",
-  "outputDirectory": ".vercel/output",
-  "framework": null
+  "outputDirectory": ".output/public",
+  "framework": null,
+  "rewrites": [
+    { "source": "/((?!_nuxt/).*)", "destination": "/index.html" }
+  ]
 }
